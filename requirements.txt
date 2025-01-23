@@ -1,0 +1,9 @@
+yfinance
+matplotlib
+pandas
+numpy
+scikit-learn
+jupyter
+flask
+flask-cors
+pandas_market_calendars
