@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Share Tech Mono', monospace;
+    overflow: hidden;
+    position: relative;
+    color: rgba(232, 93, 0, 0.8);
+}
+
+.grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(#00FF00 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.03) 50%,
+        rgba(0, 0, 0, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.glitch {
+    animation: glitch 0.3s linear infinite;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(232, 93, 0, 0.4);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(232, 93, 0, 0.6);
+}
+
+input, button {
+    font-family: 'Share Tech Mono', monospace;
+    outline: none;
+}
+
+input:focus, button:focus {
+    box-shadow: 0 0 10px rgba(232, 93, 0, 0.4);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: rgba(232, 93, 0, 0.8);
+    font-weight: normal;
+}
+
+.container {
+    position: relative;
+    z-index: 3;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.loading-text {
+    animation: blink 1.5s infinite;
+}
+
+.error-text {
+    color: #FF3333;
+    text-shadow: 0 0 5px #FF3333;
+}
+
+.success-text {
+    color: #33FF33;
+    text-shadow: 0 0 5px #33FF33;
+}
+
+@media (max-width: 768px) {
+    .grid-overlay {
+        background-size: 20px 20px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .scanlines {
+        background-size: 100% 3px;
+    }
+}
+
+@media print {
+    .grid-overlay,
+    .scanlines {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+}
